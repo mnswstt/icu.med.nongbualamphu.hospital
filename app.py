@@ -9,7 +9,7 @@ io = SocketIO(app, cors_allowed_origins="*")
 bootstrap = Bootstrap(app)
 eventlet.monkey_patch()
 
-ip = '192.168.1.3'
+ip = '192.168.1.4'
 port = 8888
 server_address = (ip, port)
 
