@@ -1,0 +1,42 @@
+<div class="col-sm-3 mt-3">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">เตียง</th>
+                <th scope="col">ชื่อ</th>
+            </tr>
+        </thead>
+        <tbody id="patient_list1"></tbody>
+    </table>
+</div>
+<div class="col-sm-3 mt-3">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">เตียง</th>
+                <th scope="col">ชื่อ</th>
+            </tr>
+        </thead>
+        <tbody id="patient_list1_2"></tbody>
+    </table>
+    <div id="isOnline" class="d-flex justify-content-center mt-4">
+        <h3>
+            {% if isOnline %}
+            <span class="badge badge-pill badge-success">Internet Online</span>
+            {% else %}
+            <span class="badge badge-pill badge-danger">Internet Offline</span>
+            {% endif %}
+        </h3>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <h3 style="color: gold;">
+            Pipe Line Engineering
+            <div>
+                And Management
+            </div>
+            <div class="mt-1" style="font-size: larg;">
+                Tel. 0619321888
+            </div>
+        </h3>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block title %} Admin {% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/index.css') }}">
+{% endblock %}
+{% block content %}
+<script>
+    $(document).ready(() => {
+        var i
+        for (i = 0; i < 10; i++) {
+            $('#add_name_table1').append(`<tr class="form-group">
+                <th>${i+1}</th>
+                <th><input name="p${i + 1}" type="text" class="form-control" placeholder=""></th>
+                <th><input name="d${i+1}" type="text" class="form-control" placeholder=""></th>
+                </tr>`)
+            $('#add_name_table2').append(`<tr class="form-group">
+                <th>${i+11}</th>
+                <th><input name="p${i + 11}" type="text" class="form-control" placeholder=""></th>
+                <th><input name="d${i+11}" type="text" class="form-control" placeholder=""></th>
+                </tr>`)
+            }
+        })
+        submitForms = function(){
+            $.post('/admin', $('form').serializeArray())
+        }
+</script>
+<div class="container mt-5">
+    <div class="row" align="center">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form><input name="shift" type="text" class="form-control" placeholder="เวรประจำวันนี้"></form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md">
+            <form id="form1" method="POST">
+                <table class="table table-border add_name_table1">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ชื่อผู้ป่วย</th>
+                            <th>แพทย์</th>
+                        </tr>
+                    </thead>
+                    <tbody id="add_name_table1"></tbody>
+                </table>
+            </form>
+        </div>
+        <div class="col-md">
+            <form id="form2" method="POST">
+                <table class="table table-border add_name_table2">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ชื่อผู้ป่วย</th>
+                            <th>แพทย์</th>
+                        </tr>
+                    </thead>
+                    <tbody id="add_name_table2"></tbody>
+                </table>
+            </form>
+        </div>
+        <button type="button" class="btn btn-warning" onclick="submitForms()">
+            อัพเดทรายชื่อ
+        </button>
+    </div>
+</div>
+{% endblock %}
