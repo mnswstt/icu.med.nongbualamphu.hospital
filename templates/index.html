@@ -4,19 +4,16 @@
 {{ super() }}
 {% endblock %}
 {% block content %}
-<meta id="my-data" data-other="{{other}}" data-bed="{{bed}}">
 <script>
     $(window).on('load', function () {
         // your code here
         const socket = io()
         var isConnected = false
-        if (!socket.connected) {
-            $('#13beds').hide()
-            $('#20beds').hide()
-        }
         socket.on('connect', function () {
             isConnected = true
             socket.emit('connected', 'Patient List Ok...');
+            $('#13beds').hide()
+            $('#20beds').hide()
         });
 
         function beds(list) {
