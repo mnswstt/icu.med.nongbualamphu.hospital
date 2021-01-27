@@ -34,7 +34,6 @@ def patient_list(raw, d):
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     if request.method == 'POST':
-        print('Admin POST name')
         raw = request.form.to_dict(flat=True)
         shift = raw.pop('shift')
         io.emit('patient_list', {'patient_list': patient_list(raw, []), 'doc_name': shift})
@@ -43,6 +42,7 @@ def admin():
 
 @io.on('connected')
 def connected(mess='Client failed to connect'):
+    print(mess)
     print("Client connected")
 
 def send_sensor_data(c):
