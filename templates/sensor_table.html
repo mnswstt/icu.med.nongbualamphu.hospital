@@ -3,7 +3,7 @@
     $(window).on('load', function () {
         // your code here
         const socket = io()
-        var isConnected = false
+        var isConnected = socket.connected
         socket.on('connect', function () {
             socket.emit('connected', 'Sensor Table Ok...');
             isConnected = true
