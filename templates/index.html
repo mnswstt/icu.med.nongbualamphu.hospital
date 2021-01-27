@@ -56,8 +56,10 @@
         }
 
         socket.on('patient_list', (payload) => {
-            $('#doc_name').text(payload['doc_name'])
-            beds(payload['patient_list'])
+            if (isConnected) {
+                $('#doc_name').text(payload['doc_name'])
+                beds(payload['patient_list'])
+            }
         })
     })
 </script>
