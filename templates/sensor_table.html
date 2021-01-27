@@ -3,44 +3,40 @@
     $(window).on('load', function () {
         // your code here
         const socket = io()
-        var isConnected = socket.connected
         socket.on('connect', function () {
             socket.emit('connected', 'Sensor Table Ok...');
-            isConnected = true
             console.log('ok...');
         });
 
         socket.on('sensor_data', function (data) {
-            if (isConnected) {
-                const temp = parseInt(data[0])
-                const humidity = parseInt(data[1])
-                const light = parseInt(data[2])
-                const pressure = parseFloat(data[3])
-                const isOn = true
+            const temp = parseInt(data[0])
+            const humidity = parseInt(data[1])
+            const light = parseInt(data[2])
+            const pressure = parseFloat(data[3])
+            const isOn = true
 
-                $('#temp').text(temp)
-                if (temp >= 19 && temp <= 25) { $('#temp').css({ "background-color": "YellowGreen" }) }
-                else { $('#temp').css({ "background-color": "orangered" }) }
+            $('#temp').text(temp)
+            if (temp >= 19 && temp <= 25) { $('#temp').css({ "background-color": "YellowGreen" }) }
+            else { $('#temp').css({ "background-color": "orangered" }) }
 
-                $('#humidity').text(humidity)
-                if (humidity <= 65) { $('#humidity').css({ "background-color": "YellowGreen" }) }
-                else { $('#humidity').css({ "background-color": "orangered" }) }
+            $('#humidity').text(humidity)
+            if (humidity <= 65) { $('#humidity').css({ "background-color": "YellowGreen" }) }
+            else { $('#humidity').css({ "background-color": "orangered" }) }
 
-                $('#light').text(light)
-                if (light >= 300) { $('#light').css({ "background-color": "YellowGreen" }) }
-                else { $('#light').css({ "background-color": "orangered" }) }
+            $('#light').text(light)
+            if (light >= 300) { $('#light').css({ "background-color": "YellowGreen" }) }
+            else { $('#light').css({ "background-color": "orangered" }) }
 
-                $('#lightuv').text('Open')
-                if (isOn) { $('#lightuv').css({ "background-color": "YellowGreen" }) }
-                else { $('#lightuv').css({ "background-color": "orangered" }) }
+            $('#lightuv').text('Open')
+            if (isOn) { $('#lightuv').css({ "background-color": "YellowGreen" }) }
+            else { $('#lightuv').css({ "background-color": "orangered" }) }
 
-                $('#pressure').text(pressure)
-                if (pressure <= -2.5) { $('#pressure').css({ "background-color": "YellowGreen" }) }
-                else { $('#pressure').css({ "background-color": "orangered" }) }
-                /*$('#drop_hepa').text(data[3])
-                if (temp >= 19 && temp <= 25) { $('#temp').css({"background-color": "YellowGreen"}) }
-                else { $('#temp').css({"background-color": "orangered"}) }*/
-            }
+            $('#pressure').text(pressure)
+            if (pressure <= -2.5) { $('#pressure').css({ "background-color": "YellowGreen" }) }
+            else { $('#pressure').css({ "background-color": "orangered" }) }
+            /*$('#drop_hepa').text(data[3])
+            if (temp >= 19 && temp <= 25) { $('#temp').css({"background-color": "YellowGreen"}) }
+            else { $('#temp').css({"background-color": "orangered"}) }*/
         });
     });
     $(document).ready(function () {
