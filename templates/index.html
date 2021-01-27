@@ -11,11 +11,11 @@
         const socket = io()
         var isConnected = false
         if (!socket.connected) {
+            $('#13beds').hide()
+            $('#20beds').hide()
         }
         socket.on('connect', function () {
             isConnected = true
-            $('#13beds').hide()
-            $('#20beds').hide()
             socket.emit('connected', 'Patient List Ok...');
         });
 
