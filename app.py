@@ -4,7 +4,7 @@ from flask_bootstrap import Bootstrap
 import eventlet, socket, eventlet
 import functools
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="/")
 io = SocketIO(app, cors_allowed_origins="*")
 bootstrap = Bootstrap(app)
 eventlet.monkey_patch()
