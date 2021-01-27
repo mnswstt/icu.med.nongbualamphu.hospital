@@ -1,78 +1,81 @@
 {% block sensor_table %}
 <script type="text/javascript" charset="utf-8">
-    $(document).ready(function(){
-
+    $(window).on('load', function () {
+        // your code here
         const socket = io()
         var isConnected = false
-        socket.on('connect', function() {
+        socket.on('connect', function () {
             socket.emit('connected', 'Sensor Table Ok...');
             isConnected = true
             console.log('ok...');
         });
-        
-        socket.on('sensor_data', function(data) {
+
+        socket.on('sensor_data', function (data) {
             if (isConnected) {
                 const temp = parseInt(data[0])
                 const humidity = parseInt(data[1])
                 const light = parseInt(data[2])
                 const pressure = parseFloat(data[3])
                 const isOn = true
-                
+
                 $('#temp').text(temp)
-                if (temp >= 19 && temp <= 25) { $('#temp').css({"background-color": "YellowGreen"}) }
-                else { $('#temp').css({"background-color": "orangered"}) }
-                
+                if (temp >= 19 && temp <= 25) { $('#temp').css({ "background-color": "YellowGreen" }) }
+                else { $('#temp').css({ "background-color": "orangered" }) }
+
                 $('#humidity').text(humidity)
-                if (humidity <= 65) { $('#humidity').css({"background-color": "YellowGreen"}) }
-                else { $('#humidity').css({"background-color": "orangered"}) }
-                
+                if (humidity <= 65) { $('#humidity').css({ "background-color": "YellowGreen" }) }
+                else { $('#humidity').css({ "background-color": "orangered" }) }
+
                 $('#light').text(light)
-                if (light >= 300) { $('#light').css({"background-color": "YellowGreen"}) }
-                else { $('#light').css({"background-color": "orangered"}) }
-                
+                if (light >= 300) { $('#light').css({ "background-color": "YellowGreen" }) }
+                else { $('#light').css({ "background-color": "orangered" }) }
+
                 $('#lightuv').text('Open')
-                if (isOn) { $('#lightuv').css({"background-color": "YellowGreen"}) }
-                else { $('#lightuv').css({"background-color": "orangered"}) }
-                
+                if (isOn) { $('#lightuv').css({ "background-color": "YellowGreen" }) }
+                else { $('#lightuv').css({ "background-color": "orangered" }) }
+
                 $('#pressure').text(pressure)
-                if (pressure <= -2.5) { $('#pressure').css({"background-color": "YellowGreen"}) }
-                else { $('#pressure').css({"background-color": "orangered"}) }
+                if (pressure <= -2.5) { $('#pressure').css({ "background-color": "YellowGreen" }) }
+                else { $('#pressure').css({ "background-color": "orangered" }) }
                 /*$('#drop_hepa').text(data[3])
                 if (temp >= 19 && temp <= 25) { $('#temp').css({"background-color": "YellowGreen"}) }
                 else { $('#temp').css({"background-color": "orangered"}) }*/
             }
         });
     });
+    $(document).ready(function () {
+
+    });
 </script>
-    <table id="sensor_table" class="table table-bordered">
-        <thead style="background-color: black;">
-            <tr>
-                <th scope="col">Sensor</th>
-                <th scope="col">Room</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Pressure (Pa)</th>
-                <th id="pressure" scope="row"></th>
-            </tr>
-            <tr>
-                <th scope="row">Temperature (°C)</th>
-                <th id="temp" scope="row"></th>
-            </tr>
-            <tr>
-                <th scope="row">Humidity (%)</th>
-                <th id="humidity" scope="row"></th>
-            </tr>
-            <tr>
-                <th scope="row">Light Intensity Room (Lux)</th>
-                <th id="light" scope="row"></th>
-            </tr>
-            <tr>
-                <th scope="row">Light Intensity UV (Lux)</th>
-                <th id="lightuv" scope="row">
-                </th>
-            </tr>
-        </tbody>
-    </table>
+<table id="sensor_table" class="table table-bordered">
+    <thead style="background-color: black;">
+        <tr>
+            <th scope="col">Sensor</th>
+            <th scope="col">Room</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Pressure (Pa)</th>
+            <th id="pressure" scope="row"></th>
+        </tr>
+        <tr>
+            <th scope="row">Temperature (°C)</th>
+            <th id="temp" scope="row"></th>
+        </tr>
+        <tr>
+            <th scope="row">Humidity (%)</th>
+            <th id="humidity" scope="row"></th>
+        </tr>
+        <tr>
+            <th scope="row">Light Intensity Room (Lux)</th>
+            <th id="light" scope="row"></th>
+        </tr>
+        <tr>
+            <th scope="row">Light Intensity UV (Lux)</th>
+            <th id="lightuv" scope="row">
+            </th>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}

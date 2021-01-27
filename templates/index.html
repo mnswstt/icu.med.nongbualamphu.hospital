@@ -6,7 +6,8 @@
 {% block content %}
 <meta id="my-data" data-other="{{other}}" data-bed="{{bed}}">
 <script>
-    $(document).ready(function () {
+    $(window).on('load', function () {
+        // your code here
         const socket = io()
         var isConnected = false
         if (!socket.connected) {
@@ -27,11 +28,11 @@
                 $('#patient_list').empty();
                 for (var i = 0; i < 13; i++) {
                     $('#patient_list').append(`
-                    <tr>
-                        <td scope="row">${i + 1}</td>
-                        <td scope="row">${list[i][0]}</td>
-                        <td scope="row">${list[i][1]}</td>
-                    </tr>`)
+                <tr>
+                    <td scope="row">${i + 1}</td>
+                    <td scope="row">${list[i][0]}</td>
+                    <td scope="row">${list[i][1]}</td>
+                </tr>`)
                 }
             } else {
                 $('#13beds').hide()
@@ -39,18 +40,18 @@
                 $('#patient_list1').empty();
                 for (var i = 0; i < 13; i++) {
                     $('#patient_list1').append(`
-                    <tr>
-                        <td scope="row">${i + 1}</td>
-                        <td scope="row">${list[i][0]}</td>
-                        </tr>`)
+                <tr>
+                    <td scope="row">${i + 1}</td>
+                    <td scope="row">${list[i][0]}</td>
+                    </tr>`)
                 }
                 $('#patient_list1_2').empty();
                 for (var i = 13; i < 20; i++) {
                     $('#patient_list1_2').append(`
-                    <tr>
-                        <td scope="row">${i + 1}</td>
-                        <td scope="row">${list[i][0]}</td>
-                    </tr>`)
+                <tr>
+                    <td scope="row">${i + 1}</td>
+                    <td scope="row">${list[i][0]}</td>
+                </tr>`)
                 }
             }
         }
@@ -61,6 +62,8 @@
                 beds(payload['patient_list'])
             }
         })
+    });
+    $(document).ready(function () {
     })
 </script>
 <div class="container-fluid justify-content-md-center">
