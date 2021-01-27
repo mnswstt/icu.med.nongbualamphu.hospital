@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     {% block head %}
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>{% block title %}{% endblock %} - My Webpage</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        {{ bootstrap.load_css() }}
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'index.css') }}">
-        <!--
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'index.css') }}">
+    <!--
             <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
             <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
             //-->
-            <!--
+    <!--
                 
                 <script src="static/jquery-3.5.1.min.js"></script>
                 <script src="/socket.io-3.0.1.min.js"></script>
             -->
-            <script type="text/javascript" src="{{ url_for('static', filename = 'jquery-3.5.1.min.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename = 'socket.io-3.0.1.min.js') }}"></script>
-            {% endblock %}
-        </head>
-        <body>
-            <div id="content" class="mt-5">{% block content %}{% endblock %}</div>
-            <div id="footer" class="py-3">{% block footer %}{% endblock %}</div>
-        {{ bootstrap.load_js() }}
-    </body>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'jquery-3.5.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'socket.io-3.0.1.min.js') }}"></script>
+    {% endblock %}
+</head>
+
+<body>
+    <div id="content" class="mt-5">{% block content %}{% endblock %}</div>
+    <div id="footer" class="py-3">{% block footer %}{% endblock %}</div>
+    {{ bootstrap.load_js() }}
+</body>
+
 </html>

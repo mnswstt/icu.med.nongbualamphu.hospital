@@ -9,7 +9,7 @@
         // your code here
         const socket = io()
         var isConnected = socket.connected
-        if (isConnected) {
+        if (!isConnected) {
             $('#13beds').hide()
             $('#20beds').hide()
         }
