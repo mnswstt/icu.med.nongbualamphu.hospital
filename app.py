@@ -52,7 +52,7 @@ if __name__ == '__main__':
     import _thread, time
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind(server_address)
-    _thread.start_new_thread(lambda: io.run(app, debug=True), ())
+    _thread.start_new_thread(lambda: io.run(app), ())
 
     while True:
         data, address = s.recvfrom(4096)
