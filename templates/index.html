@@ -8,10 +8,13 @@
 <script>
     $(document).ready(function () {
         const socket = io()
-        socket.on('connect', function () {
-            socket.emit('connected', 'Patient List Ok...');
+        if (!socket.connected) {
             $('#13beds').hide()
             $('#20beds').hide()
+        }
+        socket.on('connect', function () {
+        console.log(socket.connected);
+            socket.emit('connected', 'Patient List Ok...');
         });
 
         function beds(list) {
