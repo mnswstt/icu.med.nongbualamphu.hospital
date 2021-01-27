@@ -8,12 +8,14 @@
     $(window).on('load', function () {
         // your code here
         const socket = io()
-        var isConnected = false
+        var isConnected = socket.connected
+        if (isConnected) {
+            $('#13beds').hide()
+            $('#20beds').hide()
+        }
         socket.on('connect', function () {
             isConnected = true
             socket.emit('connected', 'Patient List Ok...');
-            $('#13beds').hide()
-            $('#20beds').hide()
         });
 
         function beds(list) {
