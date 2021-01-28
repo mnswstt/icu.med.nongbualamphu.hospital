@@ -51,6 +51,7 @@ def send_sensor_data(c):
 if __name__ == '__main__':
     import _thread, time
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    print('runnnnnn n')
     s.bind(server_address)
     _thread.start_new_thread(lambda: io.run(app, port=5001), ())
 
