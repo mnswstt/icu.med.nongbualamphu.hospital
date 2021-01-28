@@ -10,8 +10,8 @@
         const socket = io()
         var isConnected = socket.connected
         if (!isConnected) {
-            $('#13beds').hide()
             $('#20beds').hide()
+            $('#doc_name').text('.............')
         }
         socket.on('connect', function () {
             isConnected = true
@@ -140,7 +140,7 @@
                 <div class="col-md-8 mt-3 badge badge-warning" align="center">
                     <h4>
                         <div style="display: inline;">
-                            หมอเวร
+                            หมอเวร:
                         </div>
                         <div id="doc_name" style="display: inline;"></div>
                     </h4>
