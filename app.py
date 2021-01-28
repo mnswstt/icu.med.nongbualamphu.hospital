@@ -51,9 +51,8 @@ def send_sensor_data(c):
 if __name__ == '__main__':
     import _thread, time
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    print('runnnnnn n')
     s.bind(server_address)
-    _thread.start_new_thread(lambda: io.run(app, port=5001), ())
+    _thread.start_new_thread(lambda: io.run(app, port=5000, host='0.0.0.0'), ())
 
     while True:
         data, address = s.recvfrom(4096)
