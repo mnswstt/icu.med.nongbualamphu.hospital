@@ -1,8 +1,7 @@
 from flask import Flask, jsonify, request, render_template
 from flask_socketio import SocketIO, emit
 from flask_bootstrap import Bootstrap
-import eventlet, socket, eventlet
-import functools
+import eventlet, socket, eventlet, functools
 
 app = Flask(__name__)
 io = SocketIO(app, cors_allowed_origins="*")
