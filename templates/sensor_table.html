@@ -16,27 +16,27 @@
             const isOn = true
 
             $('#temp').text(temp)
-            if (temp >= 19 && temp <= 25) { $('#temp').css({ "background-color": "rgb(153, 0, 0)" }) }
-            else { $('#temp').css({ "background-color": "rgb(0, 153, 0)" }) }
+            if (temp >= 19 && temp <= 25) { $('#temp').css({ "background-color": "rgb(128, 0, 0)" }) }
+            else { $('#temp').css({ "background-color": "rgb(0, 128, 0)" }) }
 
             $('#humidity').text(humidity)
-            if (humidity <= 65) { $('#humidity').css({ "background-color": "rgb(153, 0, 0)" }) }
-            else { $('#humidity').css({ "background-color": "rgb(0, 153, 0)" }) }
+            if (humidity <= 65) { $('#humidity').css({ "background-color": "rgb(128, 0, 0)" }) }
+            else { $('#humidity').css({ "background-color": "rgb(0, 128, 0)" }) }
 
             $('#light').text(light)
-            if (light >= 300) { $('#light').css({ "background-color": "rgb(153, 0, 0)" }) }
-            else { $('#light').css({ "background-color": "rgb(0, 153, 0)" }) }
+            if (light >= 300) { $('#light').css({ "background-color": "rgb(128, 0, 0)" }) }
+            else { $('#light').css({ "background-color": "rgb(0, 128, 0)" }) }
 
             $('#lightuv').text('On')
-            if (isOn) { $('#lightuv').css({ "background-color": "rgb(153, 0, 0)" }) }
-            else { $('#lightuv').css({ "background-color": "rgb(0, 153, 0)" }) }
+            if (isOn) { $('#lightuv').css({ "background-color": "rgb(128, 0, 0)" }) }
+            else { $('#lightuv').css({ "background-color": "rgb(0, 128, 0)" }) }
 
             $('#pressure').text(pressure)
-            if (pressure <= -2.5) { $('#pressure').css({ "background-color": "rgb(153, 0, 0)" }) }
-            else { $('#pressure').css({ "background-color": "rgb(0, 153, 0)" }) }
+            if (pressure <= -2.5) { $('#pressure').css({ "background-color": "rgb(128, 0, 0)" }) }
+            else { $('#pressure').css({ "background-color": "rgb(0, 128, 0)" }) }
             /*$('#drop_hepa').text(data[3])
-            if (temp >= 19 && temp <= 25) { $('#temp').css({"background-color": "rgb(153, 0, 0)"}) }
-            else { $('#temp').css({"background-color": "rgb(0, 153, 0)"}) }*/
+            if (temp >= 19 && temp <= 25) { $('#temp').css({"background-color": "rgb(128, 0, 0)"}) }
+            else { $('#temp').css({"background-color": "rgb(0, 128, 0)"}) }*/
         });
     });
     $(document).ready(function () {
