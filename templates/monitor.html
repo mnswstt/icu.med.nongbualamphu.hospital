@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+{% block title %} Index {% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<script type=text/javascript>
+    $(window).on('load', function () {
+        // your code here
+        const socket = io()
+        var isConnected = socket.connected
+        if (!isConnected) {
+            $('#20beds').hide()
+            $('#doct_name').text()
+        }
+        socket.on('connect', function () {
+            isConnected = true
+            socket.emit('connected', 'Patient List Ok...');
+        });
+
+        function beds(list) {
+            var no_patients_exceed_13 = true;
+            for (var i = 13; i < 20; i++) if (!list[i][0] == "") no_patients_exceed_13 = false
+            if (no_patients_exceed_13) {
+                $('#20beds').hide()
+                $('#13beds').show()
+                $('#patient_list').empty();
+                for (var i = 0; i < 13; i++) {
+                    $('#patient_list').append(`
+                <tr>
+                    <td scope="row">${i + 1}</td>
+                    <td scope="row">${list[i][0]}</td>
+                    <td scope="row">${list[i][1]}</td>
+                </tr>`)
+                }
+            } else {
+                $('#13beds').hide()
+                $('#20beds').show()
+                $('#patient_list1').empty();
+                for (var i = 0; i < 13; i++) {
+                    $('#patient_list1').append(`
+                <tr>
+                    <td scope="row">${i + 1}</td>
+                    <td scope="row">${list[i][0]}</td>
+                    </tr>`)
+                }
+                $('#patient_list1_2').empty();
+                for (var i = 13; i < 20; i++) {
+                    $('#patient_list1_2').append(`
+                <tr>
+                    <td scope="row">${i + 1}</td>
+                    <td scope="row">${list[i][0]}</td>
+                </tr>`)
+                }
+            }
+        }
+
+        socket.on('patient_list', (payload) => {
+            if (isConnected) {
+                $('#doct_name').text(payload['doct_name'])
+                //$('#doct_name').text(payload['doct_name'])
+                beds(payload['patient_list'])
+            }
+        })
+    });
+    $(document).ready(function () {
+    })
+</script>
+<div class="container-fluid justify-content-md-center">
+    <div class="row justify-content-md-center p-4">
+        <h1 id="header">
+            <div>
+                โรงพยาบาลหนองบัวลำภู ICU.Med floor.3
+            </div>
+        </h1>
+    </div>
+    <div class="row border mx-5">
+        <div id="13beds" class="col-sm-6 mt-4">
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">เตียง</th>
+                            <th scope="col">ชื่อ</th>
+                            <th scope="col">แพทย์</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patient_list"></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="20beds" class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-6 mt-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">เตียง</th>
+                                <th scope="col">ชื่อ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patient_list1"></tbody>
+                    </table>
+                </div>
+                <div class="col-sm-6 mt-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">เตียง</th>
+                                <th scope="col">ชื่อ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patient_list1_2"></tbody>
+                    </table>
+                    <div id="isOnline" class="d-flex justify-content-center mt-4">
+                        <h3>
+                            {% if isOnline %}
+                            <span class="badge badge-pill badge-success">Internet Online</span>
+                            {% else %}
+                            <span class="badge badge-pill badge-danger">Internet Offline</span>
+                            {% endif %}
+                        </h3>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <h3 style="color: gold;">
+                            Pipe Line Engineering
+                            <div>
+                                And Management
+                            </div>
+                            <div class="mt-1" style="font-size: larg;">
+                                Tel. 0619321888
+                            </div>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 mt-5 badge badge-warning" align="center">
+                    <h4>
+                        <div style="display: inline;">
+                            ห้วหน้าเวร:
+                        </div>
+                        <div id="doct_name" style="display: inline;"></div>
+                    </h4>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-3"> </div>
+                <div class="col-md-6">
+                    {% include 'sensor_table.html' %}
+                </div>
+                <div class="col-md-3"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
