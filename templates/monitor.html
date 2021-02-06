@@ -20,7 +20,7 @@
         });
 
         function isMale(name) {
-            var male = ['นาย', 'เด็กชาย', 'พระ', 'สามเณร']
+            var male = ['นาย', 'เด็กชาย', 'พระ', 'สามเณร', 'Mr']
             for (var i = 2; i < name.length && i < 10; i++) {
                 for (var k = 0; k < male.length; k++) {
                     if (name.toString().substring(0, i) == male[k]) return true
