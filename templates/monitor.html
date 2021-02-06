@@ -37,8 +37,7 @@
                 $('#13beds').show()
                 $('#patient_list').empty();
                 for (var i = 0; i < 13; i++) {
-                    var sex = isMale(list[i][0])? "ชาย":"หญิง"
-                    console.log(sex);
+                    var sex = (!list[i][0] == "")? isMale(list[i][0])? "ชาย":"หญิง":""
                     $('#patient_list').append(`
                 <tr>
                     <td scope="row">${i + 1}</td>
