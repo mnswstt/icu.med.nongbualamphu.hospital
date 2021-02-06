@@ -16,7 +16,6 @@ server_address = (ip, port)
 
 from urllib.request import urlopen
 from urllib.error import URLError
-
 def internet_on(host='http://google.com'):
     try:
         urlopen(host)
@@ -35,15 +34,15 @@ def home():
 
 @app.route('/monitor')
 def rpi_monitor():
-    d = []
-    doct = ''
-    for x in db.icu_floor3.find().sort('date', pymongo.DESCENDING).limit(1):
-        for i in range(len(x['caregiver_list'])):
-            d.append((x['patient_list'][i], x['caregiver_list'][i]))
-        doct = x['doct_shift']
-        #io.emit('patient_list', {'patient_list': d, 'doct_name': x['doct_shift']})
+    #d = []
+    #doct = ''
+    #for x in db.icu_floor3.find().sort('date', pymongo.DESCENDING).limit(1):
         #db.icu_floor3.remove({'_id': x['_id']}) # ทดสอบๆ
-    return render_template('monitor.html', isOnline=internet_on(), data=d, doct_shift=doct)
+        #for i in range(len(x['caregiver_list'])):
+            #d.append((x['patient_list'][i], x['caregiver_list'][i]))
+        #doct = x['doct_shift']
+    #io.emit('patient_list', {'patient_list': d, 'doct_name': x['doct_shift']})
+    return render_template('monitor.html', isOnline=internet_on())
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
@@ -52,7 +51,6 @@ def admin():
         doct_shift = raw.pop('shift')
         db.icu_floor3.insert_one(manipulate_data.icu_f3(raw, doct_shift))
         io.emit('patient_list', {'patient_list': patient_list(raw, []), 'doct_name': doct_shift})
-        io.emit('doct_shift', doct_shift)
     return render_template('admin.html')
 
 @io.on('connected')
