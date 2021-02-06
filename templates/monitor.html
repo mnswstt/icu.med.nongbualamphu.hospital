@@ -13,14 +13,26 @@
             $('#20beds').hide()
             $('#doct_name').text()
         }
+
         socket.on('connect', function () {
             isConnected = true
             socket.emit('connected', 'Patient List Ok...');
         });
 
+        function isMale(name) {
+            var male = ['นาย', 'เด็กชาย', 'พระ', 'สามเณร']
+            for (var i = 2; i < 10; i++) {
+                for (var k = 0; k < male.length; k++) {
+                    if (name.toString().substring(0,i).equals(male[k])) return true
+                }
+            }
+            return false
+        }
+
         function beds(list) {
             var no_patients_exceed_13 = true;
             for (var i = 13; i < 20; i++) if (!list[i][0] == "") no_patients_exceed_13 = false
+            var sex = isMale(list[i][0])? "ชาย":"หญิง"
             if (no_patients_exceed_13) {
                 $('#20beds').hide()
                 $('#13beds').show()
@@ -30,6 +42,7 @@
                 <tr>
                     <td scope="row">${i + 1}</td>
                     <td scope="row">${list[i][0]}</td>
+                    <td scope="row">${sex}</td>
                     <td scope="row">${list[i][1]}</td>
                 </tr>`)
                 }
@@ -82,6 +95,7 @@
                         <tr>
                             <th scope="col">เตียง</th>
                             <th scope="col">ชื่อ</th>
+                            <th scope="col">เพศ</th>
                             <th scope="col">แพทย์</th>
                         </tr>
                     </thead>

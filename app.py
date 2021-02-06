@@ -28,7 +28,7 @@ def patient_list(raw, d):
         d.append((raw["p"+str(i)], raw["d"+str(i)]))
     return d
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
     return render_template('index.html')
 
