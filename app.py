@@ -49,8 +49,8 @@ def admin():
     if request.method == 'POST':
         raw = request.form.to_dict(flat=True)
         doct_shift = raw.pop('shift')
-        db.icu_floor3.insert_one(manipulate_data.icu_f3(raw, doct_shift))
         io.emit('patient_list', {'patient_list': patient_list(raw, []), 'doct_name': doct_shift})
+        db.icu_floor3.insert_one(manipulate_data.icu_f3(raw, doct_shift))
     return render_template('admin.html')
 
 @io.on('connected')
