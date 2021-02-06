@@ -32,6 +32,7 @@
         function beds(list) {
             var no_patients_exceed_13 = true;
             for (var i = 13; i < 20; i++) if (!list[i][0] == "") no_patients_exceed_13 = false
+            console.log(isMale(list[i][0]));
             //var sex = isMale(list[i][0])? "ชาย":"หญิง"
             var sex = "ชาย"
             if (no_patients_exceed_13) {
