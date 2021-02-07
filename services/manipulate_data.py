@@ -2,6 +2,7 @@ from datetime import datetime
 
 def icu_f3(raw):
     patient = []
+    print(raw)
     for k in raw:
         if k[0] == 'p':
             patient.append(raw[k])

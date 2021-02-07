@@ -31,7 +31,8 @@ def patient_list(raw, d):
 @app.route('/', methods=['GET'])
 def home():
     for x in db.icu_floor3.find().sort('date', pymongo.DESCENDING).limit(1):
-        print(x)
+        for i in range(len(x['caregiver_list']))
+            print(x[i])
     return render_template('index.html')
 
 @app.route('/monitor')
