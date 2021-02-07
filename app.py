@@ -52,7 +52,7 @@ def admin():
         raw = request.form.to_dict(flat=True)
         io.emit('patient_list', {'patient_list': patient_list(raw, [])})
         print(manipulate_data.icu_f3(raw))
-        db.icu_floor3.insert_one(manipulate_data.icu_f3(raw))
+        #db.icu_floor3.insert_one(manipulate_data.icu_f3(raw))
     return render_template('admin.html')
 
 @io.on('connected')
