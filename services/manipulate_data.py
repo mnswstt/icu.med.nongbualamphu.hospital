@@ -1,4 +1,5 @@
 from datetime import datetime
+
 def icu_f3(raw):
     patient = []
     for k in raw:
@@ -11,4 +12,4 @@ def icu_f3(raw):
         "patient_list": patient,
         "caregiver_list": doct,
         "date": datetime.utcnow().isoformat()
-        }
+    }
