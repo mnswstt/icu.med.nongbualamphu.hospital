@@ -3,7 +3,11 @@ from flask_socketio import SocketIO, emit
 from flask_bootstrap import Bootstrap
 import eventlet, socket, eventlet, functools, pymongo
 import services.manipulate_data as manipulate_data
-import db
+import pymongo
+
+client = pymongo.MongoClient("127.0.0.1", 27020)
+db = client.icu_room
+icu_floor3 = db['icu-floor-3']
 
 app = Flask(__name__)
 io = SocketIO(app, cors_allowed_origins="*")
@@ -49,7 +53,7 @@ def admin():
     if request.method == 'POST':
         raw = request.form.to_dict(flat=True)
         io.emit('patient_list', {'patient_list': patient_list(raw, [])})
-        #db.icu_floor3.insert_one(manipulate_data.icu_f3(raw))
+        icu_floor3.insert_one(manipulate_data.icu_f3(raw))
     return render_template('admin.html')
 
 @io.on('connected')
