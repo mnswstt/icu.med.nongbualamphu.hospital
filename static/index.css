@@ -21,3 +21,7 @@ table, thead, tr, tbody, th, td {
 .table td {
   text-align: center;
 }
+
+.footer {
+  text-align: center;
+}
